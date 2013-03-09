@@ -36,7 +36,7 @@ public void ladderCollisions(){
   fill(0, 0, 255);
   rect(1000, 150, 120, 120);
   if(p1.x + 32 >= 1000 && p1.y <= 150 + 120) {
-    selectRoom();
+    if(enemy_Goo.size() == 0) {selectRoom();}
   }
 }
 
@@ -45,6 +45,7 @@ public void enemy_Goo(){
     Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
     eg.drawEnemy_Goo();
     eg.movement();
+    println(eg.health);
   }    
 }
 
