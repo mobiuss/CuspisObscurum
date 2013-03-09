@@ -1,13 +1,10 @@
 void Room1(){
     enemy_Goo.add(new Enemy_Goo(200, 200));
-    enemy_Goo.add(new Enemy_Goo(700, 700));
   }
 
 float roomselect;
-int stopRandom;
 void selectRoom(){
   roomselect = random(1, 3);
-  stopRandom++;
   switch(int(roomselect)) {  
     case 1:
       for (int i = enemy_Goo.size()-1; i >= 0; i--) {

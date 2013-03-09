@@ -19,6 +19,13 @@ class Enemy_Goo{
     maxXspd = int(maxXspd); maxYspd = int(maxYspd);
   }
   
+  void basicCollisions(){
+    if(y < 150) { y=150; ySpeed = 0; }
+    if(x < 150) { x=150; xSpeed = 0; }
+    if(x > 1098) { x=1098; xSpeed = 0; }
+    if(y > 688) { y=688; ySpeed = 0; }
+  }
+  
   void drawEnemy_Goo(){
     copy(enemy, animator, 0, 32, 32, x, y, 32, 32);
     if(frameCount %int(60/20) == 0){

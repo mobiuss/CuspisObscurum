@@ -45,6 +45,7 @@ public void enemy_Goo(){
     Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
     eg.drawEnemy_Goo();
     eg.movement();
+    eg.basicCollisions();
     println(eg.health);
   }    
 }
@@ -86,7 +87,7 @@ public void keyPressed(){
     if(keyCode == UP) { attUp = true; attDown = false; attLeft = false; attRight = false;}
     if(keyCode == DOWN) { attDown = true; attUp = false; attLeft = false; attRight = false;}
     if(keyCode == RIGHT) { attRight = true; attDown = false; attLeft = false; attUp = false;}
-    if(keyCode == LEFT) { attLeft = true; attDown = false; attUp = false; attRight = false;}
+    if(keyCode == LEFT) { attLeft = true; attDown = false; attUp = false; attRight = false; p1.attackDone = false;}
   }
  
   if(key == 'W' || key == 'w') { up = true; }
