@@ -42,14 +42,14 @@ class Enemy_Goo{
          } } else { if(xSpeed > 0) { xSpeed -= deccel; }}
        
        if(p1.y <= y) {
-        enemy = loadImage("Images/enemy2.png");
+        //enemy = loadImage("Images/enemy2.png");
         ySpeed -= accel;
         if(ySpeed <= -maxYspd) {
           ySpeed = -maxYspd; 
         } } else { if(ySpeed < 0) {  ySpeed += deccel; }}
   
        if(p1.y >= y) {
-         enemy = loadImage("Images/enemy.png");
+         //enemy = loadImage("Images/enemy.png");
          ySpeed += accel;
        if(ySpeed >= maxYspd) {
          ySpeed = maxYspd; 

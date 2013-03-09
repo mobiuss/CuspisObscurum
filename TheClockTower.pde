@@ -9,7 +9,6 @@ public void setup(){
   background(0);
   loadMenuImages();
   enemy_Goo = new ArrayList();
-  frameRate(60);
   p1 = new Player(630, 680);
   loadFirstLevel();
 }
@@ -19,7 +18,7 @@ public void loadFirstLevel(){
 }
 
 public void loadMenuImages(){
-  background = loadImage("Images/title.png");  
+  background = loadImage("Images/title.png");
 }
 
 public void loadImages(){
@@ -77,13 +76,11 @@ public void draw(){
   collisions();
   //fill(239, 255, 152, 100);  THIS WAS THE LIGHT TEST
   //triangle(230, 275, 258, 220, 286, 275);
-  } else {
-  image(background, 0, 0);
-  }
+  } else { image(background, 0, 0); }
 }
 
 public void keyPressed(){
-  if(key == 's' || key == 'S') { playing = true; loadImages();}  
+  if(key == 's' || key == 'S') { if(playing == false) { loadImages(); } playing = true;}  
   if(key == CODED){
     if(keyCode == UP) { attUp = true; attDown = false; attLeft = false; attRight = false;}
     if(keyCode == DOWN) { attDown = true; attUp = false; attLeft = false; attRight = false;}
