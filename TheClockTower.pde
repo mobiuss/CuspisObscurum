@@ -36,7 +36,7 @@ public void ladderCollisions(){
   fill(0, 0, 255);
   rect(1000, 150, 120, 120);
   if(p1.x + 32 >= 1000 && p1.y <= 150 + 120) {
-    println("hit ladders, next floor");
+    selectRoom();
   }
 }
 
@@ -86,9 +86,8 @@ public void keyPressed(){
     if(keyCode == DOWN) { attDown = true; attUp = false; attLeft = false; attRight = false;}
     if(keyCode == RIGHT) { attRight = true; attDown = false; attLeft = false; attUp = false;}
     if(keyCode == LEFT) { attLeft = true; attDown = false; attUp = false; attRight = false;}
-    if(keyCode ==CONTROL) { Attack = true; }
   }
-  //new code in clock tower
+ 
   if(key == 'W' || key == 'w') { up = true; }
   if(key == 'S' || key == 's') { down = true; }
   if(key == 'D' || key == 'd') { right = true; }
