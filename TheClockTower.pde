@@ -9,7 +9,10 @@ public void setup(){
   background(0);
   loadMenuImages();
   enemy_Goo = new ArrayList();
+<<<<<<< HEAD
   frameRate(60);
+=======
+>>>>>>> cuspisobscurum
   p1 = new Player(630, 680);
   loadFirstLevel();
 }
@@ -19,7 +22,11 @@ public void loadFirstLevel(){
 }
 
 public void loadMenuImages(){
+<<<<<<< HEAD
   background = loadImage("Images/title.png");  
+=======
+  background = loadImage("Images/title.png");
+>>>>>>> cuspisobscurum
 }
 
 public void loadImages(){
@@ -77,6 +84,7 @@ public void draw(){
   collisions();
   //fill(239, 255, 152, 100);  THIS WAS THE LIGHT TEST
   //triangle(230, 275, 258, 220, 286, 275);
+<<<<<<< HEAD
   } else {
   image(background, 0, 0);
   }
@@ -84,6 +92,13 @@ public void draw(){
 
 public void keyPressed(){
   if(key == 's' || key == 'S') { playing = true; loadImages();}  
+=======
+  } else { image(background, 0, 0); }
+}
+
+public void keyPressed(){
+  if(key == 's' || key == 'S') { if(playing == false) { loadImages(); } playing = true;}  
+>>>>>>> cuspisobscurum
   if(key == CODED){
     if(keyCode == UP) { attUp = true; attDown = false; attLeft = false; attRight = false;}
     if(keyCode == DOWN) { attDown = true; attUp = false; attLeft = false; attRight = false;}
