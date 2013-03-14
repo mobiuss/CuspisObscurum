@@ -1,20 +1,27 @@
 PImage background;
 ArrayList enemy_Goo;
+ArrayList hole;
 boolean playing;
 boolean up, down, left, right, attUp, attDown, attLeft, attRight, Attack;
 Player p1;
+int currentRoom = 1;
 
 public void setup(){
   size(1280, 720);
   background(0);
   loadMenuImages();
   enemy_Goo = new ArrayList();
+  hole = new ArrayList();
   p1 = new Player(630, 680);
-  loadFirstLevel();
+  loadRoom();
 }
 
-public void loadFirstLevel(){
-    Room1();
+public void loadRoom(){
+    if(currentRoom == 1) {Room1();}
+    if(currentRoom == 2) {Room2();}
+    if(currentRoom == 3) {Room3();}
+    if(currentRoom == 4) {Room4();}
+    
 }
 
 public void loadMenuImages(){
@@ -36,7 +43,7 @@ public void ladderCollisions(){
   fill(0, 0, 255);
   rect(1000, 150, 120, 120);
   if(p1.x + 32 >= 1000 && p1.y <= 150 + 120) {
-    if(enemy_Goo.size() == 0) {selectRoom();}
+    if(enemy_Goo.size() == 0) {clearArrays(); currentRoom++; loadRoom();}
   }
 }
 
@@ -46,7 +53,16 @@ public void enemy_Goo(){
     eg.drawEnemy_Goo();
     eg.movement();
     eg.basicCollisions();
+    eg.attack();
     println(eg.health);
+  }    
+}
+
+public void hole(){
+  for (int i = hole.size()-1; i >= 0; i--) {
+    Hole h = (Hole) hole.get(i);
+    h.drawHole();
+    h.collisions();
   }    
 }
 
@@ -69,12 +85,14 @@ public void collisions(){
 }
 
 
+
 public void draw(){
   if(playing) {
   image(background, 0, 0);
   ladderCollisions();
   methodRunPlayers();
   enemy_Goo();
+  hole();
   collisions();
   //fill(239, 255, 152, 100);  THIS WAS THE LIGHT TEST
   //triangle(230, 275, 258, 220, 286, 275);
@@ -84,9 +102,9 @@ public void draw(){
 public void keyPressed(){
   if(key == 's' || key == 'S') { if(playing == false) { loadImages(); } playing = true;}  
   if(key == CODED){
-    if(keyCode == UP) { attUp = true; attDown = false; attLeft = false; attRight = false;}
-    if(keyCode == DOWN) { attDown = true; attUp = false; attLeft = false; attRight = false;}
-    if(keyCode == RIGHT) { attRight = true; attDown = false; attLeft = false; attUp = false;}
+    if(keyCode == UP) { attUp = true; attDown = false; attLeft = false; attRight = false; p1.attackDone = false;}
+    if(keyCode == DOWN) { attDown = true; attUp = false; attLeft = false; attRight = false; p1.attackDone = false;}
+    if(keyCode == RIGHT) { attRight = true; attDown = false; attLeft = false; attUp = false; p1.attackDone = false;}
     if(keyCode == LEFT) { attLeft = true; attDown = false; attUp = false; attRight = false; p1.attackDone = false;}
   }
  

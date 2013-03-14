@@ -11,6 +11,9 @@ class Player{
   int attanimator;
   PImage attack;
   boolean attackDone;
+  int health;
+  int xdif, ydif;
+  float knockbackx, knockbacky;
 
   Player(int _x, int _y){
     x = _x;    y = _y;
@@ -21,17 +24,16 @@ class Player{
     attack = loadImage("Images/attackL1.png");
     animator = 0;
     attanimator = 0;
-    attackDone = false;
+    attackDone = true;
+    health = 100;
   }
- 
- int xdif, ydif;
  
  void Attack(){
    //rect(attX, attY, attW, attH);
-   if(attUp){ fill(255); attX = x-7; attY = y-55; attW = 45; attH = 55;}
-   else if(attDown) { fill(255); attX = x-7; attY = y+32; attW = 45; attH = 55;}
-   else if(attLeft) { fill(255); attX = x-55; attY = y-5; attW = 55; attH = 45; xdif = -10; ydif = 0;}
-   else if(attRight) { fill(255); attX = x+32; attY = y-5; attW = 55; attH = 45;}
+   if(attUp){ fill(255); attX = x-7; attY = y-55; attW = 45; attH = 55; xdif = 0; ydif = -20; attack = loadImage("Images/attackT1.png"); knockbackx = 0; knockbacky = 0.5;}
+   else if(attDown) { fill(255); attX = x-7; attY = y+32; attW = 45; attH = 55; xdif = 0; ydif = 20; attack = loadImage("Images/attackB1.png"); knockbackx = 0; knockbacky = -0.5;}
+   else if(attLeft) { fill(255); attX = x-55; attY = y-5; attW = 55; attH = 45; xdif = -10; ydif = 0; attack = loadImage("Images/attackL1.png"); knockbackx = 0.5; knockbacky = 0; }
+   else if(attRight) { fill(255); attX = x+32; attY = y-5; attW = 55; attH = 45; xdif = 10; ydif = 0; attack = loadImage("Images/attackR1.png"); knockbackx = -0.5; knockbacky = 0;}
    else { attX = 0; attY = 0; attW = 0; attH = 0; }
      if(attackDone == false) {
        copy(attack, attanimator, 0, 32, 32, x + xdif, y + ydif, 32, 32); 
@@ -39,11 +41,15 @@ class Player{
        for (int i = enemy_Goo.size()-1; i >= 0; i--) {
          Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
          if(eg.x >= attX && eg.x <= attX + attW &&eg.y >= attY && eg.y <= attY + attH) {
-             eg.health -= 1;    
+             eg.health -= 1;
+             eg.xSpeed -= knockbackx;
+             eg.ySpeed -= knockbacky;
              //REST OF ATTACKING CODE GOES HERE   
          }
          else if(eg.x+32 >= attX && eg.x+32 <= attX + attW &&eg.y >= attY && eg.y <= attY + attH) {
              eg.health -= 1;
+             eg.xSpeed -= knockbackx;
+             eg.ySpeed -= knockbacky;
              //AND HERE 
          }
          if(eg.health <= 0) { enemy_Goo.remove(i); }

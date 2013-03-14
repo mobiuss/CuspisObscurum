@@ -9,9 +9,9 @@ class Enemy_Goo{
   
   Enemy_Goo(int _x, int _y){
     x = _x;    y = _y;
-    //maxXspd = random(2,4);    maxYspd = random(2,4);
-    maxXspd = 3;    maxYspd = 3;
-    accel = 0.1;    deccel = 0.2;
+    //maxXspd = 1;    maxYspd = 1;
+    maxXspd = random(2,4);    maxYspd = random(2,4);
+    accel = 0.2;    deccel = 0.2;
     xSpeed = 0;    ySpeed = 0;
     health = 100;
     animator = 0;
@@ -34,6 +34,15 @@ class Enemy_Goo{
         } else { animator = 0; }
       }
     }
+    
+  void attack(){
+    if(p1.x >= x && p1.x <= x+32 && p1.y >= y && p1.y <= y+32) { p1.health -= 1; xSpeed = -xSpeed / 2; ySpeed = -ySpeed / 2; }
+    if(p1.x+32 >= x && p1.x+32 <= x+32 && p1.y >= y && p1.y <= y+32) { p1.health -= 1; xSpeed = -xSpeed / 2; ySpeed = -ySpeed / 2;}
+    if(p1.x+32 >= x && p1.x+32 <= x+32 && p1.y+32 >= y && p1.y+32 <= y+32) { p1.health -= 1; xSpeed = -xSpeed / 2; ySpeed = -ySpeed / 2;}
+    if(p1.x >= x && p1.x <= x+32 && p1.y+32 >= y && p1.y+32 <= y+32) { p1.health -= 1; xSpeed = -xSpeed / 2; ySpeed = -ySpeed / 2; }
+    if(p1.health <= 0) { playing = false; }
+    println(p1.health);
+  }
 
   void movement(){
       if(p1.x <= x){

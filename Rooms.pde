@@ -1,38 +1,31 @@
 void Room1(){
     enemy_Goo.add(new Enemy_Goo(200, 200));
+    hole.add(new Hole(500, 500));
   }
+  
+void Room2(){
+  enemy_Goo.add(new Enemy_Goo(100, 100));
+  enemy_Goo.add(new Enemy_Goo(500, 100));
+}
 
-float roomselect;
-void selectRoom(){
-  roomselect = random(1, 3);
-  switch(int(roomselect)) {  
-    case 1:
-      for (int i = enemy_Goo.size()-1; i >= 0; i--) {
-        Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
-        enemy_Goo.remove(i);
-      }
-      enemy_Goo.add(new Enemy_Goo(100, 100));
-      enemy_Goo.add(new Enemy_Goo(200, 100));
-    break;  
+void Room3(){
+  enemy_Goo.add(new Enemy_Goo(840, 300));
+  enemy_Goo.add(new Enemy_Goo(200, 600)); 
+}
 
-    case 2:
-      for (int i = enemy_Goo.size()-1; i >= 0; i--) {
-        Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
-        enemy_Goo.remove(i);
-      }
-      enemy_Goo.add(new Enemy_Goo(300, 300));
-      enemy_Goo.add(new Enemy_Goo(400, 300)); 
-    break;
-    
-    case 3:
-      for (int i = enemy_Goo.size()-1; i >= 0; i--) {
-        Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
-        enemy_Goo.remove(i);
-      }
-      enemy_Goo.add(new Enemy_Goo(500, 500));
-      enemy_Goo.add(new Enemy_Goo(600, 500));
-    break;
-    
-    default: println("Ah fack");
-  }
+void Room4(){
+  hole.add(new Hole(500, 500));
+  enemy_Goo.add(new Enemy_Goo(200, 600)); 
+}
+
+void clearArrays(){
+  for (int i = enemy_Goo.size()-1; i >= 0; i--) {
+    Enemy_Goo eg = (Enemy_Goo) enemy_Goo.get(i);
+    enemy_Goo.remove(i);
+ }
+ 
+ for (int i = hole.size()-1; i >= 0; i--) {
+    Hole h = (Hole) hole.get(i);
+    hole.remove(i);
+ }
 }

@@ -1,5 +1,7 @@
 class Item{
   int x, y;
+  PImage item;
+  int dmg;
   
   Item(int _x, int _y){
     x = _x;
@@ -7,15 +9,18 @@ class Item{
   }
   
   void sword(){
-    
+    item = loadImage("Images/sword.png");
+    dmg = 2;
   }
   
   void axe(){
-    
+    item = loadImage("Images/axe.png");
+    dmg = 3;
   }
   
   void dagger(){
-    
+    item = loadImage("Images/dagger.png");
+    dmg = 1;
   }
   
   void display(){
